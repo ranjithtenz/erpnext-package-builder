@@ -11,6 +11,7 @@ def run_patches():
 	"""
 	print "Running Patches..."
 	import webnotes
+	from webnotes.db import Database
 	from webnotes.modules import patch
 	import webnotes.profile
 
@@ -31,7 +32,6 @@ def make_master():
 
 	from webnotes.install_lib.install import Installer
 	import webnotes
-	from webnotes.db import Database
 
 	# unzip master
 	os.system("gunzip %s" % os.path.join(erpnext_path, 'master.sql.gz'))
@@ -107,7 +107,7 @@ def make_tarball():
 	
 	# add wnframework
 	tar.add(wnframework_path, arcname='wnframework', exclude=tar_exclude)
-	tar.add(erpnext_path, 'erpnext', filter=tar_filter)
+	tar.add(erpnext_path, 'erpnext', exclude=tar_exclude)
 	tar.add(os.path.join(os.path.dirname(__file__),'install.py'), arcname='install.py')	
 	tar.add(os.path.join(os.path.dirname(__file__),'install_settings.py'), arcname='install_settings.py')
 	tar.add(os.path.join(os.path.dirname(__file__),'README'), arcname='README')
@@ -120,6 +120,5 @@ if __name__=='__main__':
 	import webnotes
 	import webnotes.defs
 	webnotes.defs.modules_path = erpnext_path
-	#build()
-	make_tarball()
+	build()
 	
