@@ -69,14 +69,15 @@ def mysql_dump(gzip=1):
 			'target':os.path.join(erpnext_path, 'master'),
 		})
 
-def tar_exclude(tarinfo):
+def tar_exclude(fn):
 	"""
 		exclude temp files and defs.py
 	"""
-	if tarinfo.endswith('.pyc'): return True
-	if tarinfo.endswith('.DS_Store'): return True
-	if tarinfo.endswith('defs.py'): return True
-	if tarinfo.startswith('.git'): return True
+	name = os.path.basename(fn)
+	if name.endswith('.pyc'): return True
+	if name.endswith('.DS_Store'): return True
+	if name.endswith('defs.py'): return True
+	if name.startswith('.git'): return True
 
 	return False
 
@@ -103,14 +104,14 @@ def make_tarball():
 	import erpnext_version
 	import tarfile
 
-	tar = tarfile.open("erpnext-%s.tar" % erpnext_version.version, "w:gz")
+	tar = tarfile.open("erpnext-%s.tar.gz" % erpnext_version.version, "w:gz")
 	
 	# add wnframework
-	tar.add(wnframework_path, arcname='wnframework', exclude=tar_exclude)
-	tar.add(erpnext_path, 'erpnext', exclude=tar_exclude)
-	tar.add(os.path.join(os.path.dirname(__file__),'install.py'), arcname='install.py')	
-	tar.add(os.path.join(os.path.dirname(__file__),'install_settings.py'), arcname='install_settings.py')
-	tar.add(os.path.join(os.path.dirname(__file__),'README'), arcname='README')
+	tar.add(wnframework_path, arcname='erpnext/wnframework', exclude=tar_exclude)
+	tar.add(erpnext_path, arcname='erpnext/erpnext', exclude=tar_exclude)
+	tar.add(os.path.join(os.path.dirname(__file__),'install.py'), arcname='erpnext/install.py')	
+	tar.add(os.path.join(os.path.dirname(__file__),'install_settings.py'), arcname='erpnext/install_settings.py')
+	tar.add(os.path.join(os.path.dirname(__file__),'README'), arcname='erpnext/README')
 
 	tar.close()
 
