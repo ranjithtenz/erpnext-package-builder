@@ -1,0 +1,53 @@
+ERPNext Install
+---------------
+ERPNext is a feature-rich web based ERP
+
+Licences: General Public Licence (v2) GPL
+
+Copyright: Web Notes Technologies Pvt Ltd
+
+Repository: github.com/webnotes/erpnext-package-builder
+
+
+
+To Install
+----------
+
+sudo python install.py
+
+
+
+Pre-requisites
+--------------
+
+Apache HTTP Server
+Python
+MySQL
+MySQL-Python (connector)
+
+Note: This script works in Linux with debian or redhat type distros.
+It should be quite easy to set this erp up in any other systems by editing the install file
+
+
+
+Settings
+--------
+
+This script will create a new database and start the erp on a virtual server
+
+To control settings, please edit install_settings.py
+
+
+
+Suport
+------
+
+For questions: groups.google.com/group/wnframework
+
+
+
+More Info
+---------
+
+https://erpnext.com
+
