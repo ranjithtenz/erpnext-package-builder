@@ -125,12 +125,12 @@ User %(www_user)s
 
 
 def set_perms():
-	"""make the current folder writable by user www"""
-	print "Adding user www..."
-	os.system("useradd -g users www")
+	"""make the current folder writable by www user"""
+	print "Adding user %s..." % www_user
+	os.system("useradd -g users %s" % www_user)
 
-	print "Making www owner of erpnext..."
-	os.system("chown -R www .")
+	print "Making %s owner of erpnext..." % www_user
+	os.system("chown -R %s ." % www_user)
 
 def install():
 	make_defs()
