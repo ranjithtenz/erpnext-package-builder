@@ -5,4 +5,4 @@ erpnext_path = '/var/www/webnotes/erpnext'
 wnframework_path = '/var/www/webnotes/wnframework/'
 
 # db root password
-root_password = 'webnotes'
+root_password = 'test123'

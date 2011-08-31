@@ -104,11 +104,17 @@ User %(www_user)s
 </VirtualHost>
 	"""
 
+	# redhat
 	if os.path.exists(os.path.join('/', 'etc', 'httpd', 'conf.d')):
 		conf_file = open(os.path.join('/', 'etc', 'httpd', 'conf.d', 'erpnext.conf'),'w')
 
+	# ubuntu
 	elif os.path.exists(os.path.join('/', 'etc', 'apache2', 'conf.d')):
 		conf_file = open(os.path.join('/', 'etc', 'apache2', 'conf.d', 'erpnext.conf'),'w')
+
+	# mac
+	elif os.path.exists(os.path.join('/', 'etc', 'httpd', 'users')):
+		conf_file = open(os.path.join('/', 'etc', 'httpd', 'users', 'erpnext.conf'),'w')
 
 	else:
 		print "[Error] Could not find apache config files in the usual places, please manually add the erpnext.conf file in your apache conf folder"
